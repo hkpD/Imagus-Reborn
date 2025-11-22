@@ -659,6 +659,9 @@ var sieve_sec,
                     list[i].classList[what.test(name) ? "remove" : "add"]("hidden");
                 }
             }
+            if (/^\d+$/.test(str)) {
+                sieve_container.querySelectorAll(":scope > div:not(.disabled)")?.[parseInt(str, 10)]?.classList.remove("hidden");
+            }
             SieveUI.countRules();
             document.querySelector(".clear_search").style.visibility = str ? "visible" : "hidden";
         },
