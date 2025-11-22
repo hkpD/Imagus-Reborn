@@ -481,12 +481,16 @@
             if (!c || c.state === 0 || !PVI.TRG) return;
 
             if (e?.type === "timeupdate") {
-                // video duration
+                // display video remaining time
                 if (PVI.VID.duration) {
                     h = c.children[2];
-                    let left = PVI.VID.duration - PVI.VID.currentTime;
-                    h.textContent = `[-${Math.floor(left / 60)}:${('0' + Math.floor(left % 60)).slice(-2)}]`;
-                    h.style.display = "inline-block";
+                    let remain = Math.floor(PVI.VID.duration - PVI.VID.currentTime);
+                    if (PVI.VID._remain !== remain) {
+                        PVI.VID._remain = remain;
+                        const text = `[-${Math.floor(remain / 60)}:${('0' + (remain % 60)).slice(-2)}]`;
+                        h.textContent = text;
+                        h.style.display = "inline-block";
+                    }
                 }
                 return;
             }
