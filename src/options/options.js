@@ -191,8 +191,7 @@ var ImprtHandler = function (caption, data_handler, hide_opts) {
         e.preventDefault();
     };
     $("imprt_text").onclick = function (e) {
-        var tarea = importer.lastElementChild;
-        if ((e = tarea.value.trim())) {
+        if ((e = textArea.value.trim())) {
             try {
                 e = JSON.parse(e);
             } catch (ex) {
@@ -200,7 +199,7 @@ var ImprtHandler = function (caption, data_handler, hide_opts) {
                 return;
             }
             importer.ondata(e, this);
-        } else tarea.focus();
+        } else textArea.focus();
     };
     document.addEventListener("mousedown", function (e) {
         if (!e.target.closest("#importer, [data-action]")) importer.visible(false);
