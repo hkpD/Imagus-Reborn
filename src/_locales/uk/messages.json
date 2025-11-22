@@ -489,6 +489,6 @@
     "message": "обидва"
   },
   "IMPR_HINT": {
-    "message": "Esc: закрити | Ctrl + Enter: імпортувати з тексту"
+    "message": "Esc: закрити | Ctrl + Enter: імпортувати з тексту | Alt + R: замінити дані | Alt + C: очистити дані"
   }
 }

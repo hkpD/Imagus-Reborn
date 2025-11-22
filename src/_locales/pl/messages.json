@@ -489,6 +489,6 @@
     "message": "Zarówno"
   },
   "IMPR_HINT": {
-    "message": "Esc: zamknij | Ctrl + Enter: import z tekstu"
+    "message": "Esc: zamknij | Ctrl + Enter: import z tekstu | Alt + R: zamień dane | Alt + C: wyczyść dane"
   }
 }

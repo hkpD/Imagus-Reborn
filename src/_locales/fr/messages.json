@@ -489,6 +489,6 @@
     "message": "les deux"
   },
   "IMPR_HINT": {
-    "message": "Échap : fermer | Ctrl + Enter : importer à partir du texte"
+    "message": "Esc : fermer | Ctrl + Enter : importer à partir du texte | Alt + R : remplacer les données | Alt + C : effacer les données"
   }
 }

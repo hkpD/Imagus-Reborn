@@ -115,6 +115,9 @@ a:hover {
 #importer input:checked + label + label {
     color: red;
 }
+.hint {
+    color: #999;
+}
 hr {
     border: 1px solid #eee;
     margin: 10px 0;

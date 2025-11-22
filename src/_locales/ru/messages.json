@@ -489,6 +489,6 @@
     "message": "оба"
   },
   "IMPR_HINT": {
-    "message": "Esc: закрыть | Ctrl + Enter: импорт из текста"
+    "message": "Esc: закрыть | Ctrl + Enter: импорт из текста | Alt + R: заменить данные | Alt + C: очистить данные"
   }
 }

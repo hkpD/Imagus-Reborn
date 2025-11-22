@@ -489,6 +489,6 @@
     "message": "两个都"
   },
   "IMPR_HINT": {
-    "message": "Esc：关闭 | Ctrl + Enter：从文本导入"
+    "message": "Esc：关闭 | Ctrl + Enter：从文本导入 | Alt + R：替换数据 | Alt + C：清除数据"
   }
 }

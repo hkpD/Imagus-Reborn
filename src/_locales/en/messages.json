@@ -381,7 +381,7 @@
     "message": "Replace existing data"
   },
   "IMPR_HINT": {
-    "message": "Esc: close | Ctrl + Enter: import from text"
+    "message": "Esc: close | Ctrl + Enter: import from text | Alt + R: replace data | Alt + C: clear data"
   },
   "LANGUAGE": {
     "message": "Language"

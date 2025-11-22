@@ -489,6 +489,6 @@
     "message": "ambos"
   },
   "IMPR_HINT": {
-    "message": "Esc: fechar | Ctrl + Enter: importar do texto"
+    "message": "Esc: fechar | Ctrl + Enter: importar do texto | Alt + R: substituir dados | Alt + C: limpar dados"
   }
 }

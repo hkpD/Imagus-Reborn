@@ -489,6 +489,6 @@
     "message": "mindkét"
   },
   "IMPR_HINT": {
-    "message": "Esc: bezár | Ctrl + Enter: importálás szövegből"
+    "message": "Esc: bezár | Ctrl + Enter: import szövegből | Alt + R: adatok cseréje | Alt + C: adatok törlése"
   }
 }
