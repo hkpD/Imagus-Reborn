@@ -424,7 +424,7 @@ function registerContentScripts() {
                 {
                     id: "app.js",
                     allFrames: !0,
-                    matches: ["*://*/*"],
+                    matches: ["<all_urls>"],
                     world: "USER_SCRIPT",
                     runAt: "document_start",
                     js: [{ file: "common/app.js" }],
@@ -432,7 +432,7 @@ function registerContentScripts() {
                 {
                     id: "content.js",
                     allFrames: !0,
-                    matches: ["*://*/*"],
+                    matches: ["<all_urls>"],
                     runAt: "document_idle",
                     world: "USER_SCRIPT",
                     js: [{ file: "content/content.js" }],

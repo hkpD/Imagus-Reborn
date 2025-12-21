@@ -22,7 +22,7 @@
 		"userScripts"
 	],
 	"host_permissions": [
-		"*://*/*"
+		"<all_urls>"
 	],
 
 	"incognito": "split",
