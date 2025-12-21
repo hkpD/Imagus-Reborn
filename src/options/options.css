@@ -36,6 +36,9 @@ body {
     width: min-content;
     min-height: 310px;
 }
+h4 {
+    margin: 24px 0 10px;
+}
 a {
     color: #1155ef;
     text-decoration: none;
@@ -664,7 +667,7 @@ span.clear_search:hover {
 #sieve_container pre,
 #sieve_container input[type="text"],
 #sieve_container textarea {
-    font: 14px Consolas, monospace;
+    font: 14px monospace;
 }
 .ace_hidden-cursors .ace_cursor {
     opacity: 0;
@@ -709,7 +712,8 @@ span.clear_search:hover {
 }
 #grants {
     box-sizing: border-box;
-    height: 200px;
+    height: 180px;
+    min-height: 180px;
     margin: 5px auto;
 }
 #grants_help {
