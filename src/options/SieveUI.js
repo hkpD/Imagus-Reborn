@@ -603,7 +603,6 @@ var sieve_sec,
             } else {
                 sieve_container.textContent = "";
                 SieveUI.sieve = {};
-                $("save_button").click();
             }
             $("save_button").classList.add("alert");
             this.countRules();
