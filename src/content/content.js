@@ -1419,7 +1419,7 @@
                 PVI.checkContentRediness(src);
                 return;
             }
-            if (/^[^?#]+\.(?:m(?:4[abprv]|p[34])|og[agv]|webm)(?:$|[?#])/i.test(src) || /#(mp[34]|og[gv]|webm)$/i.test(src)) {
+            if (/^[^?#]+\.(?:m(?:4[abprv]|p[34])|og[agv]|webm|mov|mk[av]|f4v)(?:$|[?#])/i.test(src) || /#(mp[34]|og[gv]|webm)$/i.test(src)) {
                 PVI.CNT = PVI.VID;
                 PVI.show("load");
                 PVI.VID.naturalWidth = 0;
