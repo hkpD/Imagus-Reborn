@@ -2838,7 +2838,6 @@
             if (deinit) {
                 PVI.reset();
                 PVI.state = 0;
-                if (!PVI.iFrame) win.removeEventListener("resize", PVI.onWinResize, true);
                 if (PVI.DIV) {
                     doc.documentElement.removeChild(PVI.DIV);
                     doc.documentElement.removeChild(PVI.LDR);
@@ -2886,6 +2885,7 @@
             win[e]("mousedown", onMouseDown, true);
             win[e]("mouseup", releaseFreeze, true);
             win[e]("dragend", releaseFreeze, true);
+            if (!PVI.iFrame) win[e]("resize", PVI.onWinResize, true);
             PVI.initOnMouseMoveEnd(!!PVI.capturedMoveEvent);
             if (!win.MutationObserver) {
                 PVI.attrObserver = null;
