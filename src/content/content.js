@@ -1961,8 +1961,8 @@
                         }
                     }
                 } else if (key === cfg.keys.mOrig || key === cfg.keys.mFit || key === cfg.keys.mFitW || key === cfg.keys.mFitH) {
-                    PVI.resizeMode = key;
-                    if (cfg.hz.resizeModeType === undefined || cfg.hz.resizeModeType === "memory") {
+                    PVI.resizeMode = cfg.hz.resizeMode = key;
+                    if (cfg.hz.resizeModeType === "memory") {
                         Port.send({ cmd: "savePrefs", prefs: { hz: { resizeMode: key } } });
                     }
 
@@ -2048,13 +2048,14 @@
             if (PVI.state > 2 && PVI.fullZm !== 2) {
                 PVI.DIV.style.visibility = "hidden";
 
-                if (cfg.hz.resizeModeType === undefined || cfg.hz.resizeModeType === "memory") PVI.resizeMode ||= cfg.hz.resizeMode;
-                else if (cfg.hz.resizeModeType === "orig") PVI.resizeMode ||= cfg.keys.mOrig;
-                else if (cfg.hz.resizeModeType === "fit") PVI.resizeMode ||= cfg.keys.mFit;
-                else if (cfg.hz.resizeModeType === "fitw") PVI.resizeMode ||= cfg.keys.mFitW;
-                else if (cfg.hz.resizeModeType === "fith") PVI.resizeMode ||= cfg.keys.mFitH;
+                let resizeModes = {
+                    "orig": cfg.keys.mOrig,
+                    "fit":  cfg.keys.mFit,
+                    "fitw": cfg.keys.mFitW,
+                    "fith": cfg.keys.mFitH
+                }
+                PVI.resizeMode = resizeModes[cfg.hz.resizeModeType] || cfg.hz.resizeMode || cfg.keys.mFit;
 
-                PVI.resizeMode ||= cfg.keys.mFit;
                 PVI.resize(PVI.resizeMode || 0);
                 PVI.m_move();
                 PVI.DIV.style.visibility = "visible";

@@ -30,6 +30,7 @@
 		"fzDefault": false,
 		"fzMode": 1,
 		"fzOnPress": 2,
+		"resizeModeType": "memory",
 		"follow": true,
 		"move": true,
 		"waitHide": false,

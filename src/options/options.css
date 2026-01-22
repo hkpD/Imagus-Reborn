@@ -301,6 +301,7 @@ body.advanced form .advanced {
 }
 .prow select {
     max-width: 308px;
+    text-transform: lowercase;
 }
 .prow input[type="color"] + input[type="text"],
 .shorter_input {
