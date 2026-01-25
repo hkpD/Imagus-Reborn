@@ -403,17 +403,17 @@ function onMessage(message, sender, sendResponse) {
 async function download(msg, incognito, sendResponse) {
     if (!msg.url) return;
 
-    await chrome.notifications.create(
-        "imagus_download",
-        {
-            title: manifest.name,
-            message: "Download started...",
-            type: "basic",
-            iconUrl: "/common/img/icon.png",
-        },
-    );
-
     if (!msg.alterDownload) {
+        /* await chrome.notifications.create(
+            "imagus_download",
+            {
+                title: manifest.name,
+                message: "Download started...",
+                type: "basic",
+                iconUrl: "/common/img/icon.png",
+            },
+        ); */
+
         let resp = await fetch(msg.url, {
             method: "get",
             headers: {
@@ -441,10 +441,10 @@ async function download(msg, incognito, sendResponse) {
     chrome.downloads.download(params)
 }
 
-chrome.downloads.onChanged.addListener(change => {
+/* chrome.downloads.onChanged.addListener(change => {
     if (!change.state) return;
     chrome.notifications.clear("imagus_download");
-});
+}); */
 
 function keepAlive() {
     // keep the service worker alive
