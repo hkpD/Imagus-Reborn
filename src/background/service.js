@@ -420,7 +420,7 @@ async function download(msg, incognito, sendResponse) {
                 "Range": "bytes=0-0"
             }
         });
-        if (!resp.ok) {
+        if (!resp.ok || resp.redirected) {
             msg.alterDownload = true;
             sendResponse(msg);
 
