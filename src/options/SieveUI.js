@@ -388,14 +388,14 @@ var sieve_sec,
             ]);
             vals = vals.querySelectorAll("input, textarea, [data-name]");
             for (const el of vals) {
-                if (el.id) {
+                if (el.id?.includes('_')) {
                     const inp_name = el.id.split("_");
                     el.defChecked = el.checked = !!(sd[inp_name[1]] && sd[inp_name[1]] & (inp_name[0] === "img" ? 2 : 1));
                     el.id += c;
                     el.nextSibling.setAttribute("for", el.id);
                     el.nextSibling.title = _("SIV_" + inp_name[1].toUpperCase());
-                }
-                if (el.nodeName === 'PRE' && el.dataset.name) {
+
+                } else if (el.nodeName === 'PRE' && el.dataset.name) {
                     let value = sd[el.dataset.name] || "";
                     let small = el.classList.contains("tar_small");
                     let isCode = value.startsWith(":");
@@ -430,13 +430,13 @@ var sieve_sec,
                     textArea.defValue = value || "";
                     textArea.dataset.id = el.dataset.name + c;
                     editor.on('blur', onValueChange);
+
                 } else if (el.dataset.name) {
-                    if (sd[el.dataset.name])
-                        if (el.type === "checkbox") {
-                            el.defaultChecked = el.checked = !!sd[el.dataset.name];
-                        } else {
-                            el.defaultValue = el.value = sd[el.dataset.name] || "";
-                        }
+                    if (el.type === "checkbox") {
+                        el.defChecked = el.checked = !!sd[el.dataset.name];
+                    } else if (sd[el.dataset.name]) {
+                        el.defValue = el.value = sd[el.dataset.name] || "";
+                    }
                 }
             }
         },

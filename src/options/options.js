@@ -372,6 +372,7 @@ var save = async function () {
     }
     await Port.send({ cmd: "savePrefs", prefs: prefs });
     await readCfg();
+    updateSavedValues();
 };
 
 var download = function (data, filename, exportAsText) {
@@ -407,16 +408,43 @@ var prefs = function (data, options, ev) {
 function onValueChange (e) {
     if (e.stopPropagation) e.stopPropagation();
     var t = e.target;
-    if (t.placeholder) return;
+    if (t.id === 'sieve_search') return;
 
     const id = t.id || t.name || t.dataset.id;
-    if (t.hasOwnProperty("defChecked") && t.defChecked !== undefined && t.defChecked !== t.checked ||
-        t.hasOwnProperty("defValue") && t.defValue !== undefined && t.defValue != (typeof t.value === "string" ? t.value.trim() : t.value)) {
+
+    let value;
+    if (t.classList.contains('ace_text-input')) {
+        value = t.parentElement?.env?.editor?.getValue();
+    } else if (t.type !== 'checkbox') {
+        value = typeof t.value === "string" ? t.value.trim() : t.value;
+    }
+
+    if (value !== undefined && t.defValue !== undefined && t.defValue != value ||
+        t.hasOwnProperty("defChecked") && t.defChecked !== undefined && t.defChecked !== t.checked
+    ) {
         input_changes[id] = true;
     } else {
         delete input_changes[id];
     }
     $("save_button").classList.toggle("alert", !!Object.keys(input_changes).length);
+}
+
+function updateSavedValues() {
+    input_changes = {};
+    const elements = document.querySelectorAll("input, textarea");
+    for (const el of elements) {
+        if(el.matches('input[type="checkbox"]')) {
+            el.defChecked = !!el.checked;
+        } else {
+            let value;
+            if (el.matches('textarea.ace_text-input')) {
+                value = el.parentElement?.env?.editor?.getValue();
+            } else {
+                value = el.value;
+            }
+            el.defValue = value;
+        }
+    }
 }
 
 window.onhashchange = function () {

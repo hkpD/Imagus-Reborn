@@ -378,6 +378,9 @@ textarea:hover {
 form input[type="checkbox"] {
     display: none;
 }
+label > .checkbox {
+    pointer-events: none;
+}
 .checkbox {
     color: transparent;
     display: inline-block;
