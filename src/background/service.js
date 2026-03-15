@@ -75,9 +75,11 @@ async function updateSieve(local) {
             for (let key in newSieve) {
                 merged[key] = newSieve[key];
             }
-            // add all other existing rules and disable them
+            // add all other existing rules and disable them; copy disabled state for existing rules
             for (let key in curSieve) {
-                if (!merged[key]) {
+                if (merged[key]) {
+                    merged[key].off = curSieve[key].off;
+                } else {
                     curSieve[key].off = 1;
                     merged[key] = curSieve[key];
                 }
