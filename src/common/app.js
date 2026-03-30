@@ -4,7 +4,7 @@ let cfg;
 
 const catchEvent = {};
 const app = {};
-const platform = typeof browser === "object" ? "firefox" : "chrome";
+const platform = navigator.userAgent.includes('Firefox') ? "firefox" : "chrome";
 
 function buildNodes(element, nodes) {
     if (!element || !Array.isArray(nodes)) {

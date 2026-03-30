@@ -4,7 +4,7 @@ var manifest = chrome.runtime.getManifest();
 var cachedSieveRes = [],
     cachedPrefs = {};
 
-const platform = location.protocol ===  "moz-extension:" ? "firefox" : "chrome";
+const platform = navigator.userAgent.includes('Firefox') ? "firefox" : "chrome";
 
 var cfg = {
     sessionGet: (keys, callback) => {
