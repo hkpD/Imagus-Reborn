@@ -54,7 +54,7 @@ a:hover {
     float: none;
 }
 .cur_zmin {
-    cursor: zoom-in;
+    cursor: help;
     text-decoration: underline 1px dotted black;
 }
 .cf:after {
