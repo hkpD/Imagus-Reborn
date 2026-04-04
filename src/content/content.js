@@ -2403,12 +2403,13 @@
                 trg.IMGS_c = true;
                 PVI.TRG = null;
                 if (PVI.fireHide) PVI.hide(e);
+                PVI.showHVR(false);
             }
         },
 
         showHVR: function (visible = true, target) {
             clearTimeout(PVI.timers.hvr_hide);
-            if (!visible) {
+            if (!visible && PVI.HVR?.style.opacity !== "0") {
                 if (!target || target === PVI.TRG || PVI.DIV.contains(target)) {
                     PVI.timers.hvr_hide = setTimeout(() => PVI.HVR.style.opacity = "0", 0);
                 }
