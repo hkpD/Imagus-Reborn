@@ -453,7 +453,6 @@ chrome.downloads.onDeterminingFilename?.addListener(function (item, suggest) {
 }); */
 
 chrome.downloads.onChanged.addListener(function (delta) {
-    console.log(delta);
     if (!downloadItems[delta.id]) return;
 
     if (delta.error || /\.html?$/.exec(delta.filename?.current)) {
