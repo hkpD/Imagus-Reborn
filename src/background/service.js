@@ -474,11 +474,15 @@ function keepAlive() {
     setInterval(chrome.runtime.getPlatformInfo, 25_000);
 }
 
+let optionsOpened = false;
 async function registerContentScripts() {
     try {
         await chrome.userScripts.configureWorld({ csp: "script-src 'self' 'unsafe-eval'", messaging: true });
     } catch(error) {
-        chrome.runtime.openOptionsPage();
+        if (!optionsOpened) {
+            chrome.runtime.openOptionsPage();
+            optionsOpened = true;
+        }
         return;
     }
 
