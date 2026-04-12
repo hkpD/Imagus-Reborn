@@ -4,6 +4,20 @@
     var imgDoc = doc.images && doc.images.length === 1 && doc.images[0];
     if (imgDoc && imgDoc.parentNode === doc.body && imgDoc.src === win.location.href) return;
 
+    // Smooth scroll support (trackpad / smooth-scroll mouse)
+    let wheelRAF = null;
+    let wheelDeltaAccum = 0;
+    let albumDeltaAccum = 0;
+    let wheelLastXY;
+    let albumDeltaTimer;
+    function applyAccumulatedZoom() {
+        wheelRAF = null;
+        const delta = wheelDeltaAccum;
+        wheelDeltaAccum = 0;
+        if (delta === 0 || !PVI.fullZm) return;
+        PVI.resize(delta, wheelLastXY);
+    }
+
     var flip = function (el, ori) {
         if (!el.scale) el.scale = { h: 1, v: 1 };
         el.scale[ori ? "h" : "v"] *= -1;
@@ -1388,7 +1402,7 @@
                 if (msg === false) {
                     box = PVI.DIV.style;
                     box.visibility = "hidden";
-                    PVI.resize(PVI.resizeMode || 0);
+                    PVI.resize(PVI.resizeMode || false);
                     // PVI.m_move();
                     box.visibility = "visible";
                     PVI.updateCaption();
@@ -1959,10 +1973,15 @@
             PVI.node = null;
             clearTimeout(PVI.timers.delayed_loader);
             win.removeEventListener("wheel", PVI.wheeler, true);
-            if (PVI._wheelRAF) { cancelAnimationFrame(PVI._wheelRAF); PVI._wheelRAF = null; }
-            PVI._wheelDeltaAccum = 0;
-            PVI._albumDeltaAccum = 0;
-            clearTimeout(PVI._albumDeltaTimer);
+
+            if (wheelRAF) {
+                cancelAnimationFrame(wheelRAF);
+                wheelRAF = null;
+            }
+            wheelDeltaAccum = 0;
+            albumDeltaAccum = 0;
+            clearTimeout(albumDeltaTimer);
+
             PVI.DIV.style.display = PVI.LDR.style.display = "none";
             PVI.DIV.style.width = PVI.DIV.style.height = "0";
             PVI.CNT.removeAttribute("src");
@@ -2389,7 +2408,7 @@
                 }
                 PVI.resizeMode = resizeModes[cfg.hz.resizeModeType] || cfg.hz.resizeMode || cfg.keys.mFit;
 
-                PVI.resize(PVI.resizeMode || 0);
+                PVI.resize(PVI.resizeMode || false);
                 PVI.m_move();
                 PVI.DIV.style.visibility = "visible";
             }
@@ -2530,19 +2549,19 @@
             } else if (PVI.shouldScroll(e) && PVI.TRG.IMGS_album) {
                 if (d !== null) {
                     if (cfg.hz.smoothScroll) {
-                        var rawDelta;
+                        let rawDelta;
                         if (cfg.hz.pileWheel === 2) {
                             if (!e.deltaX && !e.wheelDeltaX) return;
                             rawDelta = e.deltaX || -e.wheelDeltaX || 0;
                         } else {
                             rawDelta = e.deltaY || -e.wheelDelta || 0;
                         }
-                        PVI._albumDeltaAccum = (PVI._albumDeltaAccum || 0) + rawDelta;
-                        clearTimeout(PVI._albumDeltaTimer);
-                        PVI._albumDeltaTimer = setTimeout(function () { PVI._albumDeltaAccum = 0; }, 200);
-                        if (Math.abs(PVI._albumDeltaAccum) >= 80) {
-                            PVI.album(PVI._albumDeltaAccum > 0 ? 1 : -1, true);
-                            PVI._albumDeltaAccum = 0;
+                        albumDeltaAccum += rawDelta;
+                        clearTimeout(albumDeltaTimer);
+                        albumDeltaTimer = setTimeout(() => albumDeltaAccum = 0, 200);
+                        if (Math.abs(albumDeltaAccum) >= 80) {
+                            PVI.album(albumDeltaAccum > 0 ? 1 : -1, true);
+                            albumDeltaAccum = 0;
                         }
                     } else {
                         if (cfg.hz.pileWheel === 2) {
@@ -2562,10 +2581,15 @@
             } else if (PVI.fullZm && PVI.fullZm < 4) {
                 if (d !== null) {
                     if (cfg.hz.smoothScroll) {
-                        PVI._wheelDeltaAccum = (PVI._wheelDeltaAccum || 0) + (e.deltaY || -e.wheelDelta || 0);
-                        PVI._wheelLastXY = PVI.fullZm > 1 ? (e.target === PVI.CNT ? [e.offsetX || e.layerX || 0, e.offsetY || e.layerY || 0] : []) : null;
-                        if (!PVI._wheelRAF) {
-                            PVI._wheelRAF = requestAnimationFrame(PVI._applyAccumulatedZoom);
+                        wheelDeltaAccum += (e.deltaY || -e.wheelDelta || 0);
+                        wheelLastXY =
+                            PVI.fullZm > 1 ?
+                                (e.target === PVI.CNT ?
+                                    [e.offsetX || e.layerX || 0, e.offsetY || e.layerY || 0] :
+                                    []) :
+                                null;
+                        if (!wheelRAF) {
+                            wheelRAF = requestAnimationFrame(applyAccumulatedZoom);
                         }
                     } else {
                         PVI.resize(
@@ -2581,14 +2605,6 @@
             PVI.reset();
         },
 
-        _applyAccumulatedZoom: function () {
-            PVI._wheelRAF = null;
-            var delta = PVI._wheelDeltaAccum || 0;
-            PVI._wheelDeltaAccum = 0;
-            if (delta === 0 || !PVI.fullZm) return;
-            PVI.resize(delta, PVI._wheelLastXY);
-        },
-
         setCursor: function (cur) {
             win.document.documentElement.style.cursor = cur || null;
         },
@@ -2602,14 +2618,14 @@
             if (rot) s.reverse();
             let winWI = winW - PVI.DBOX["wpb"] - PVI.DBOX["wm"];
             let winHI = winH - PVI.DBOX["hpb"] - PVI.DBOX["hm"] - PVI.getCapHeight();
-            if (x === k.mFit || x === 0) {
+            if (x === k.mFit || x === false) {
                 if (winWI / winHI < s[0] / s[1]) {
-                    x = winWI > s[0] ? 0 : k.mFitW;
+                    x = winWI > s[0] ? false : k.mFitW;
                 } else {
-                    x = winHI > s[1] ? 0 : k.mFitH;
+                    x = winHI > s[1] ? false : k.mFitH;
                 }
             }
-            switch (x) {
+            switch (typeof x === "number" ? "num" : x) {
                 case k.mFitW:
                     s[1] *= winWI / s[0];
                     s[0] = winWI;
@@ -2622,6 +2638,7 @@
                     break;
                 case "+":
                 case "-":
+                case "num":
                     k = [parseInt(PVI.DIV.style.width, 10), 0];
                     k[1] = (k[0] * s[rot ? 0 : 1]) / s[rot ? 1 : 0];
                     if (xy_img) {
@@ -2636,7 +2653,9 @@
                         xy_img[0] /= k[rot ? 1 : 0];
                         xy_img[1] /= k[rot ? 0 : 1];
                     }
-                    x = x === "+" ? 4 / 3 : 0.75;
+                    x = typeof x === "number" ?
+                        Math.max(0.25, Math.min(4, Math.exp(-x * 0.002877))) :
+                        x === "+" ? 4 / 3 : 0.75;
                     s[0] = x * Math.max(16, k[rot ? 1 : 0]);
                     s[1] = x * Math.max(16, k[rot ? 0 : 1]);
                     if (xy_img) {
@@ -2644,30 +2663,6 @@
                         xy_img[1] *= k[rot ? 0 : 1] - s[1];
                     }
                     break;
-                default:
-                    if (typeof x === "number") {
-                        k = [parseInt(PVI.DIV.style.width, 10), 0];
-                        k[1] = (k[0] * s[rot ? 0 : 1]) / s[rot ? 1 : 0];
-                        if (xy_img) {
-                            if (xy_img[1] === undefined || rot) {
-                                xy_img[0] = k[0] / 2;
-                                xy_img[1] = k[1] / 2;
-                            } else if (PVI.DIV.curdeg % 360)
-                                if (!(PVI.DIV.curdeg % 180)) {
-                                    xy_img[0] = k[0] - xy_img[0];
-                                    xy_img[1] = k[1] - xy_img[1];
-                                }
-                            xy_img[0] /= k[rot ? 1 : 0];
-                            xy_img[1] /= k[rot ? 0 : 1];
-                        }
-                        x = Math.max(0.25, Math.min(4, Math.exp(-x * 0.002877)));
-                        s[0] = x * Math.max(16, k[rot ? 1 : 0]);
-                        s[1] = x * Math.max(16, k[rot ? 0 : 1]);
-                        if (xy_img) {
-                            xy_img[0] *= k[rot ? 1 : 0] - s[0];
-                            xy_img[1] *= k[rot ? 0 : 1] - s[1];
-                        }
-                    }
             }
             if (!xy_img) xy_img = [true, null];
             xy_img.push(s[rot ? 1 : 0], s[rot ? 0 : 1]);
