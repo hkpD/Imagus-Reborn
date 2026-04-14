@@ -155,8 +155,8 @@
         }
         if (e.button === 0) {
             if (PVI.fullZm) {
-                mdownstart = true;
                 if (e.ctrlKey || PVI.fullZm !== 2) return;
+                mdownstart = true;
                 pdsp(e);
                 PVI.fullZm = 3;
                 win.addEventListener("mouseup", PVI.fzDragEnd, true);
