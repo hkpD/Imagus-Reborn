@@ -2456,7 +2456,7 @@
                     if (PVI.fullZm) PVI.DIV.style.transition = "all 0s";
                 }, PVI.anim.maxDelay);
             if (PVI.CNT === PVI.VID) PVI.VID.controls = true;
-            if (PVI.state > 2 && PVI.fullZm !== 2) {
+            if (PVI.state > 2) {
                 PVI.DIV.style.visibility = "hidden";
 
                 let resizeModes = {
