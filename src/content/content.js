@@ -525,42 +525,38 @@
             let imagusStyle = doc.createElement("style");
             imagusStyle.innerText = `
                 #imagus-menu {
+                    interpolate-size: allow-keywords;
+                    box-sizing: border-box;
                     position: absolute;
                     right: 8px;
                     top: 8px;
                     border-radius: 8px;
-                    /* max-height: calc(100% - 20px); */
-                    /* max-width: calc(100% - 20px); */
                     overflow: hidden;
-                    padding: 6px;
+                    padding: 4px;
                     z-index: 10;
                     display: none;
-                    background: #0000004d;
+                    background: #00000040;
                     opacity: 0;
+                    height: 48px;
+                    transition-duration: .1s;
+                    transition-property: color, opacity, height, background-color;
+                    flex-direction: column;
+                    gap: 4px;
+                    color: black;
+                    backdrop-filter: blur(6px);
                 }
                 [data-fz="true"] > #imagus-menu {
-                    display: block;
+                    display: flex;
                 }
-                [data-rotate="90"] #imagus-menu {
-                    left: 116px;
-                    top: -104px;
-                    bottom: unset;
-                    right: unset;
-                    rotate: -90deg;
+                :hover > #imagus-menu {
+                    opacity: 1;
                 }
-                [data-rotate="180"] #imagus-menu {
-                    left: 6px;
-                    top: unset;
-                    bottom: 6px;
-                    right: unset;
-                    rotate: 180deg;
+                #imagus-menu:hover {
+                    height: unset;
+                    background: #00000070;
                 }
-                [data-rotate="270"] #imagus-menu {
-                    left: unset;
-                    top: unset;
-                    bottom: -102px;
-                    right: 118px;
-                    rotate: 90deg;
+                #imagus-menu i:first-child {
+                    font-size: 22px;
                 }
                 #imagus-menu i {
                     width: 40px;
@@ -569,26 +565,48 @@
                     justify-content: center;
                     align-items: center;
                     cursor: pointer;
-                    opacity: 0;
-                    background: #e0e0e0;
+                    transition: inherit;
+                    background: #ffffff80;
                     border-radius: 4px;
                     font: 20px sans-serif;
-                    opacity: .5;
+                    flex-shrink: 0;
+                    color: #00000082
                 }
-                #imagus-menu i:not(:first-child) {
-                    margin-top: 4px;
+                #imagus-menu:hover i {
+                    color: black;
+                    background: #b5b5b5;
                 }
-                :hover > #imagus-menu {
-                    opacity: 1;
+                #imagus-menu:hover i:hover {
+                    background: #ebebeb;
                 }
-                #imagus-menu:hover {
-                    background: #00000066;
+                #imagus-menu i span:nth-child(2),
+                #imagus-menu:hover i span:nth-child(1) {
+                    display: none;
                 }
-                #imagus-menu:hover i:not(:hover) {
-                    opacity: .7;
+                #imagus-menu:hover i span:nth-child(2) {
+                    display: block;
                 }
-                #imagus-menu i:hover {
-                    opacity: 1;
+                [data-rotate="90"] #imagus-menu {
+                    left: -40px;
+                    bottom: unset;
+                    right: unset;
+                    rotate: -90deg;
+                    transform-origin: top right;
+                }
+                [data-rotate="180"] #imagus-menu {
+                    left: 6px;
+                    top: unset;
+                    bottom: 6px;
+                    right: unset;
+                    rotate: 180deg;
+                    transform-origin: center;
+                }
+                [data-rotate="270"] #imagus-menu {
+                    top: calc(100% - 6px);
+                    bottom: unset;
+                    right: 6px;
+                    rotate: 90deg;
+                    transform-origin: top right;
                 }
 
                 #imagus-glr {
@@ -663,9 +681,13 @@
                     tag: "div",
                     attrs: { id: "imagus-menu" },
                     nodes: [
-                        { tag: "i", text: "G", attrs: { "data-action": "gallery", title: "Gallery" } },
+                        { tag: "i", text: "≡", attrs: { "data-action": "hide", title: "Hide toolbar" }, nodes: [
+                            { tag: "span", text: "≡" },
+                            { tag: "span", text: "⨉" },
+                        ]},
                         { tag: "i", text: "O", attrs: { "data-action": "open", title: "Open in new tab" } },
                         { tag: "i", text: "S", attrs: { "data-action": "download", title: "Save" } },
+                        { tag: "i", text: "G", attrs: { "data-action": "gallery", title: "Gallery" } },
                         { tag: "i", text: "#", attrs: { "data-action": "goto", title: "Goto / Search" } },
                         { tag: "i", text: "↻", attrs: { "data-action": "rotate", title: "Rotate right" } },
                         { tag: "i", text: "P", attrs: { "data-action": "preferences", title: "Preferences" } },
@@ -2074,7 +2096,10 @@
         },
 
         menuClick: function (e) {
-            switch (e.target.dataset?.action) {
+            switch (e.target.closest("[data-action]")?.dataset?.action) {
+                case "hide":
+                    PVI.MENU.style.display = "none";
+                    break;
                 case "gallery":
                     PVI.gallery();
                     break;
