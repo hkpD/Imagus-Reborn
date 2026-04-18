@@ -294,6 +294,7 @@ function onMessage(message, sender, sendResponse) {
                     let tabOptions = { url, active: !msg.nf };
                     if (sender?.tab?.id) {
                         tabOptions.openerTabId = sender.tab.id;
+                        tabOptions.index = sender.tab.index + 1;
                     }
                     chrome.tabs.create(tabOptions)
                     .catch(error => {

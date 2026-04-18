@@ -43,15 +43,19 @@
         }
     }
 
-    var open = function (e) {
+    var openTab = function (e) {
         let src = PVI.EXTENSION?.VIDEOJS?.player?.src() || PVI.CNT.src;
         if (PVI.galleryState === 2 && PVI.TRG?.href) {
             src = PVI.TRG.href
         }
         if (src) {
             src = src.replace(rgxHash, "");
-            window.open(src);
-            // Port.send({ cmd: "open", url: src, nf: e?.shiftKey });
+            if (e.shiftKey || e.button === 1) {
+                Port.send({ cmd: "open", url: src, nf: true });
+            } else {
+                window.open(src);
+                window.focus();
+            }
             if (e && !e.shiftKey && !PVI.fullZm) PVI.reset();
         }
     }
@@ -128,7 +132,12 @@
         }
         if (e.type === "mouseup") {
             if ([1, 3, 4].includes(e.button)) {
-                PVI.key_action(e);
+                if (e.button === 1 && PVI.MENU.contains(e.target)) {
+                    // middle click on the toolbar
+                    PVI.menuClick(e);
+                } else {
+                    PVI.key_action(e);
+                }
                 return;
             }
             if (e.target !== PVI.CNT || PVI.fullZm || e.button !== 0) return;
@@ -169,6 +178,12 @@
             }
             if (PVI.fireHide) PVI.m_over({ relatedTarget: PVI.TRG, clientX: e.clientX, clientY: e.clientY });
             if (!PVI.freeze || PVI.lastScrollTRG) PVI.freeze = 1;
+            return;
+        }
+
+        if (e.button === 1 && PVI.MENU.contains(e.target)) {
+            // middle click on the toolbar
+            e.preventDefault();
             return;
         }
 
@@ -2076,7 +2091,7 @@
                     rotate(true);
                     break;
                 case "open":
-                    open();
+                    openTab(e);
                     break;
                 default:
                     break;
@@ -2291,7 +2306,7 @@
                 else if (key === cfg.keys.send) {
                     if (PVI.CNT === PVI.IMG) imageSendTo({ url: PVI.CNT.src, nf: e.shiftKey });
                 } else if (key === cfg.keys.hz_open) {
-                    open(e);
+                    openTab(e);
                 } else if (key === cfg.keys.prefs) {
                     Port.send({ cmd: "options" });
                     if (!PVI.fullZm) PVI.reset();
