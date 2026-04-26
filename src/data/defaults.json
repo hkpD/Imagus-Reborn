@@ -32,7 +32,7 @@
 		"fzDefault": false,
 		"fzMode": 1,
 		"fzOnPress": 2,
-		"fzToolbar": true,
+		"toolbar": 1,
 		"resizeModeType": "memory",
 		"follow": true,
 		"move": true,

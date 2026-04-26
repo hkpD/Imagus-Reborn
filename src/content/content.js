@@ -562,8 +562,9 @@
                     background: #00000040;
                     opacity: 0;
                     height: 48px;
+                    transition-property: opacity, height, color, background-color;
                     transition-duration: .1s;
-                    transition-property: color, opacity, height, background-color;
+                    transition-delay: .5s, .5s, .5s, .5s;
                     flex-direction: column;
                     gap: 4px;
                     color: black;
@@ -572,12 +573,17 @@
                 [data-fz="true"] > #imagus-menu {
                     display: flex;
                 }
-                :hover > #imagus-menu {
+                ${cfg.hz.toolbar === 1 ? `
+                    div:hover > #imagus-menu {
+                        opacity: 1;
+                        transition: opacity .1s 0s, height .1s .5s, color .1s .5s, background-color .1s .5s;
+                    }
+                ` : ""}
+                div:hover > #imagus-menu:hover {
                     opacity: 1;
-                }
-                #imagus-menu:hover {
                     height: unset;
                     background: #00000070;
+                    transition-delay: 0s;
                 }
                 #imagus-menu i:first-child {
                     font-size: 22px;
@@ -700,7 +706,7 @@
             PVI.GLR.addEventListener("wheel", PVI.galleryWheeler, true);
 
             // create popup menu
-            if (cfg.hz.fzToolbar) {
+            // if (cfg.hz.fzToolbar) {
                 buildNodes(PVI.DIV, [{
                     tag: "div",
                     attrs: { id: "imagus-menu" },
@@ -720,7 +726,8 @@
                 }]);
                 PVI.MENU = PVI.DIV.querySelector("#imagus-menu");
                 PVI.MENU.addEventListener("click", PVI.menuClick);
-            }
+                PVI.MENU.addEventListener("mousedown", pdsp);
+            // }
 
             PVI.reset();
         },
@@ -2070,6 +2077,7 @@
             PVI.DIV.style.display = PVI.LDR.style.display = "none";
             PVI.DIV.style.width = PVI.DIV.style.height = "0";
             PVI.CNT.removeAttribute("src");
+            PVI.MENU.style.display = "";
             if (PVI.CNT === PVI.VID) PVI.VID.load();
             if (PVI.anim.left || PVI.anim.top) PVI.DIV.style.left = PVI.DIV.style.top = "auto";
             if (PVI.anim.opacity) PVI.DIV.style.opacity = "0";
@@ -2155,6 +2163,7 @@
                 default:
                     break;
             }
+            pdsp(e);
         },
 
         key_action: function (e) {
