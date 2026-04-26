@@ -503,8 +503,8 @@ button.alert {
     color: #e03c00;
     box-shadow: 0 0 2px 1px #e03c0099;
 }
-.file_button:hover,
-.op_buttons > button:hover {
+.file_button:active,
+.op_buttons > button:active {
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
 }
 .action_buttons > span:hover,
