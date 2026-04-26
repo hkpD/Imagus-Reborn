@@ -738,7 +738,7 @@
             buildNodes(PVI.CAP, [
                 { tag: "b", attrs: { style: "margin-right: 4px; display: none; transition: background-color .1s; border-radius: 3px; padding: 0 2px;" } },
                 { tag: "b", attrs: { style: "margin-right: 4px; display: " + (cfg.hz.capWH ? "inline-block" : "none") } },
-                { tag: "b", attrs: { style: "margin-right: 4px; display: none; color: rgb(204, 255, 208);" } },
+                { tag: "b", attrs: { style: `margin-right: 4px; display: none; color: ${cfg.hz.capStyle ? "#306f35" : "#ccffd0"};` } },
                 { tag: "span", attrs: { style: "color: inherit; display: " + (cfg.hz.capText ? "inline-block" : "none") } },
             ]);
             var e = PVI.CAP.firstElementChild;
