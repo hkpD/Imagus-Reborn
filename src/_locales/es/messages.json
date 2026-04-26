@@ -171,7 +171,7 @@
     "message": "pre-cargar imágenes manualmente"
   },
   "HZ_SC_FULLZOOM": {
-    "message": "entrar al modo de visor fijo"
+    "message": "entrar al modo de visor fijo (<b>+ Shift</b> para el otro modo de movimiento)"
   },
   "HZ_SC_FULLSPACE": {
     "message": "activar/desactivar el uso de todo el espacio disponible"
@@ -180,7 +180,7 @@
     "message": "ajustar el texto a la anchura del visor (u ocultarlo usando <b>Shift +</b> atajo)"
   },
   "HZ_SC_OPEN": {
-    "message": "abrir la imagen en una nueva pestaña (<b>Shift</b> para abrir en segundo plano)"
+    "message": "abrir la imagen en una nueva pestaña (<b>+ Shift</b> para abrir en segundo plano, <b>+ Ctrl</b> para la ventana emergente)"
   },
   "HZ_SC_RESET": {
     "message": "ocultar el visor y detener la descarga de su contenido"
@@ -514,5 +514,17 @@
   },
   "SC_HIRES": {
     "message": "alternar imagen de alta resolución"
+  },
+  "TOOLBAR_IMG": {
+    "message": "al pasar el cursor sobre la imagen"
+  },
+  "TOOLBAR_CORNER": {
+    "message": "al pasar el cursor sobre la esquina superior derecha"
+  },
+  "DEBUG_RULES": {
+    "message": "Habilitar la depuración de reglas"
+  },
+  "HZ_SMOOTHSCROLL": {
+    "message": "Compatibilidad con desplazamiento suave (trackpad/ratón de desplazamiento suave)"
   }
 }

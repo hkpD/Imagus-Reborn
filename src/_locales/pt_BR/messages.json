@@ -168,7 +168,7 @@
     "message": "pré-carregar imagens manualmente"
   },
   "HZ_SC_FULLZOOM": {
-    "message": "modo de zoom total"
+    "message": "modo de zoom total (<b>+ Shift</b> para o outro modo de movimento)"
   },
   "HZ_SC_FULLSPACE": {
     "message": "alternar usando todo o espaço disponível"
@@ -177,7 +177,7 @@
     "message": "cobrir legenda (ou esconde-la quando <b>Shift</b> é pressionado)"
   },
   "HZ_SC_OPEN": {
-    "message": "abrir imagem em uma nova guia (<b>Shift</b> para abrir em segundo plano)"
+    "message": "abrir imagem em uma nova guia (<b>+ Shift</b> para abrir em segundo plano, <b>+ Ctrl</b> para pop-up)"
   },
   "HZ_SC_RESET": {
     "message": "esconder pop-up e parar seu carregamento"
@@ -514,5 +514,17 @@
   },
   "SC_HIRES": {
     "message": "alternar imagem de alta resolução"
+  },
+  "TOOLBAR_IMG": {
+    "message": "ao passar o mouse sobre a imagem"
+  },
+  "TOOLBAR_CORNER": {
+    "message": "ao passar o mouse no canto superior direito"
+  },
+  "DEBUG_RULES": {
+    "message": "Habilitar depuração de regras"
+  },
+  "HZ_SMOOTHSCROLL": {
+    "message": "Suporte para rolagem suave (trackpad/mouse com rolagem suave)"
   }
 }

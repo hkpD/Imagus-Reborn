@@ -171,7 +171,7 @@
     "message": "Précharger manuellement les images"
   },
   "HZ_SC_FULLZOOM": {
-    "message": "Zoom maximum"
+    "message": "Zoom maximum (<b>+ Shift</b> pour l'autre mode de déplacement)"
   },
   "HZ_SC_FULLSPACE": {
     "message": "Activer/désactiver l'utilisation de tout l'espace disponible"
@@ -180,7 +180,7 @@
     "message": "Afficher la légende (ou la cacher lorsque <b>Maj</b> est maintenu)"
   },
   "HZ_SC_OPEN": {
-    "message": "Ouvrir l'image dans un nouvel onglet (<b>Maj</b> pour un onglet en arrière plan)"
+    "message": "Ouvrir l'image dans un nouvel onglet (<b>+ Maj</b> pour un onglet en arrière plan, <b>+ Ctrl</b> pour une fenêtre contextuelle)"
   },
   "HZ_SC_RESET": {
     "message": "Cacher l'aperçu et arrêter de charger son contenu"
@@ -514,5 +514,17 @@
   },
   "SC_HIRES": {
     "message": "basculer l'image haute résolution"
+  },
+  "TOOLBAR_IMG": {
+    "message": "en survolant l'image"
+  },
+  "TOOLBAR_CORNER": {
+    "message": "en survolant le coin supérieur droit"
+  },
+  "DEBUG_RULES": {
+    "message": "Activer le débogage des règles"
+  },
+  "HZ_SMOOTHSCROLL": {
+    "message": "Prise en charge du défilement fluide (trackpad / souris à défilement fluide)"
   }
 }

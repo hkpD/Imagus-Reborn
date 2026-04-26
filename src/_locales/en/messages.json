@@ -180,7 +180,7 @@
     "message": "manually preload images"
   },
   "HZ_SC_FULLZOOM": {
-    "message": "full-zoom mode"
+    "message": "full-zoom mode (<b>+ Shift</b> for the other move mode)"
   },
   "HZ_SC_FULLSPACE": {
     "message": "toggle using all available space"
@@ -192,7 +192,7 @@
     "message": "wrap caption (or hide it when <b>Shift</b> is held)"
   },
   "HZ_SC_OPEN": {
-    "message": "open image in new tab (<b>Shift</b> for background tab)"
+    "message": "open image in new tab (<b>+ Shift</b> for background tab, <b>+ Ctrl</b> for popup)"
   },
   "HZ_SC_RESET": {
     "message": "hide the pop-up and stop loading its content"
@@ -331,6 +331,12 @@
   },
   "HZ_FZTOOLBAR": {
     "message": "Show toolbar"
+  },
+  "TOOLBAR_IMG": {
+    "message": "when hovering the image"
+  },
+  "TOOLBAR_CORNER": {
+    "message": "when hovering the top right corner"
   },
   "HZ_FZDEFAULT": {
     "message": "Always view in Full-zoom mode"
@@ -519,6 +525,6 @@
     "message": "To continue you have to <a href=\"#\">allow User Scripts</a>."
   },
   "DEBUG_RULES": {
-    "message": "Debug rules"
+    "message": "Enable rules debugging"
   }
 }

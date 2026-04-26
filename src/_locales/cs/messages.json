@@ -171,7 +171,7 @@
     "message": "přednačíst obrázky na stránce"
   },
   "HZ_SC_FULLZOOM": {
-    "message": "režim plného zvětšení"
+    "message": "režim plného zvětšení (<b>+ Shift</b> pro jiný režim pohybu)"
   },
   "HZ_SC_FULLSPACE": {
     "message": "přepnout využití veškerého volného místa"
@@ -180,7 +180,7 @@
     "message": "zalomit text titulku (<b>+ Shift</b> pro skrytí)"
   },
   "HZ_SC_OPEN": {
-    "message": "otevřít obrázek v novém panelu (<b>+ Shift</b> - otevřít panel v pozadí)"
+    "message": "otevřít obrázek v novém panelu (<b>+ Shift</b> otevřít panel v pozadí, <b>+ Ctrl</b> pro vyskakovací okno)"
   },
   "HZ_SC_RESET": {
     "message": "zavřít náhled a zastavit načítání jeho obsahu"
@@ -514,5 +514,17 @@
   },
   "SC_HIRES": {
     "message": "přepnout obrázek s vysokým rozlišením"
+  },
+  "TOOLBAR_IMG": {
+    "message": "při najetí na obrázek"
+  },
+  "TOOLBAR_CORNER": {
+    "message": "při najetí na pravý horní roh"
+  },
+  "DEBUG_RULES": {
+    "message": "Povolit ladění pravidel"
+  },
+  "HZ_SMOOTHSCROLL": {
+    "message": "Podpora hladkého posouvání (trackpad / myš s hladkým posouváním)"
   }
 }

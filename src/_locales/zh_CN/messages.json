@@ -168,7 +168,7 @@
     "message": "手动预加载图片"
   },
   "HZ_SC_FULLZOOM": {
-    "message": "（进入）完整缩放模式"
+    "message": "全缩放模式（<b>+ Shift</b> 用于其他移动模式）"
   },
   "HZ_SC_FULLSPACE": {
     "message": "切换为使用所有可用空间"
@@ -177,7 +177,7 @@
     "message": "标题换行显示（或按住 <b>Shift</b> 隐藏标题）"
   },
   "HZ_SC_OPEN": {
-    "message": "在新标签页打开图片（同时按住 <b>Shift</b> 在后台标签页打开）"
+    "message": "在新选项卡中打开图像（<b>+ Shift</b> 用于背景选项卡，<b>+ Ctrl</b> 用于弹出窗口）"
   },
   "HZ_SC_RESET": {
     "message": "键用于隐藏弹出视图并停止载入其内容"
@@ -514,5 +514,17 @@
   },
   "SC_HIRES": {
     "message": "切换高分辨率图像"
+  },
+  "TOOLBAR_IMG": {
+    "message": "当悬停图像时"
+  },
+  "TOOLBAR_CORNER": {
+    "message": "当鼠标悬停在右上角时"
+  },
+  "DEBUG_RULES": {
+    "message": "启用规则调试"
+  },
+  "HZ_SMOOTHSCROLL": {
+    "message": "平滑滚动支持（触控板/平滑滚动鼠标）"
   }
 }

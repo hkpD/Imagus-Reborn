@@ -171,7 +171,7 @@
     "message": "képek előre betöltése"
   },
   "HZ_SC_FULLZOOM": {
-    "message": "teljes méret"
+    "message": "teljes méret (<b>+ Shift</b> a másik mozgási módhoz)"
   },
   "HZ_SC_FULLSPACE": {
     "message": "rendelkezésre álló hely és automatikus méretezés közti váltás"
@@ -180,7 +180,7 @@
     "message": "Fejléc törése (<b>Shift</b> tartásával együtt elrejtése)"
   },
   "HZ_SC_OPEN": {
-    "message": "Kép megnyitása új ablakban (<b>Shift</b> háttérfülben)"
+    "message": "kép megnyitása új ablakban (<b>+ Shift</b> háttérfülben, <b>+ Ctrl</b> az előugró ablakhoz)"
   },
   "HZ_SC_RESET": {
     "message": "felugró elrejtése és tartalma töltésének leállítása"
@@ -514,5 +514,17 @@
   },
   "SC_HIRES": {
     "message": "nagy felbontású kép váltása"
+  },
+  "TOOLBAR_IMG": {
+    "message": "amikor a képet lebegteti"
+  },
+  "TOOLBAR_CORNER": {
+    "message": "amikor a jobb felső sarokban lebeg"
+  },
+  "DEBUG_RULES": {
+    "message": "Szabályhibakeresés engedélyezése"
+  },
+  "HZ_SMOOTHSCROLL": {
+    "message": "Sima görgetés támogatása (trackpad / sima görgetésű egér)"
   }
 }

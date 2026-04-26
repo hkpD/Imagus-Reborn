@@ -171,7 +171,7 @@
     "message": "Bilder manuell vorladen"
   },
   "HZ_SC_FULLZOOM": {
-    "message": "Vollzoommodus"
+    "message": "Vollzoommodus (<b>+ Shift</b> für den anderen Bewegungsmodus)"
   },
   "HZ_SC_FULLSPACE": {
     "message": "Umschalten unter Verwendung des gesamten Platzes"
@@ -180,7 +180,7 @@
     "message": "Beschriftung umbrechen (oder ausblenden, wenn <b>Umschalttaste</b> gehalten wird)"
   },
   "HZ_SC_OPEN": {
-    "message": "Bild in neuem Tab öffnen (<b>Umschalttaste</b> für Hintergrund-Tab)"
+    "message": "Bild in neuem Tab öffnen (<b>+ Umschalttaste</b> für Hintergrund-Tab, <b>+ Strg</b> für Popup)"
   },
   "HZ_SC_RESET": {
     "message": "Pop-up ausblenden und laden des Inhalts beenden"
@@ -514,5 +514,17 @@
   },
   "SC_HIRES": {
     "message": "Hochauflösendes Bild umschalten"
+  },
+  "TOOLBAR_IMG": {
+    "message": "wenn Sie mit der Maus über das Bild fahren"
+  },
+  "TOOLBAR_CORNER": {
+    "message": "wenn Sie mit der Maus über die obere rechte Ecke fahren"
+  },
+  "DEBUG_RULES": {
+    "message": "Aktivieren Sie das Debuggen von Regeln"
+  },
+  "HZ_SMOOTHSCROLL": {
+    "message": "Smooth-Scroll-Unterstützung (Trackpad / Smooth-Scroll-Maus)"
   }
 }

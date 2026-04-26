@@ -171,7 +171,7 @@
     "message": "handmatig afbeeldingen van tevoren laden"
   },
   "HZ_SC_FULLZOOM": {
-    "message": "full-zoom modus"
+    "message": "volledige zoommodus (<b>+ Shift</b> voor de andere verplaatsingsmodus)"
   },
   "HZ_SC_FULLSPACE": {
     "message": "schakelen tussen het gebruik van alle beschikbare ruimte"
@@ -180,7 +180,7 @@
     "message": "onderschrift wrappen (of verbergen wanneer <b>Shift</b> wordt ingedrukt)"
   },
   "HZ_SC_OPEN": {
-    "message": "afbeelding in nieuwe tab openen (<b>Shift</> voor achtergrond tab)"
+    "message": "afbeelding in nieuwe tab openen (<b>+ Shift</b> voor achtergrond tab, <b>+ Ctrl</b> voor pop-up)"
   },
   "HZ_SC_RESET": {
     "message": "pop-up verbergen en het laden van de huidige media stoppen"
@@ -514,5 +514,17 @@
   },
   "SC_HIRES": {
     "message": "hoge resolutie afbeelding schakelen"
+  },
+  "TOOLBAR_IMG": {
+    "message": "wanneer u de afbeelding beweegt"
+  },
+  "TOOLBAR_CORNER": {
+    "message": "wanneer u de rechterbovenhoek beweegt"
+  },
+  "DEBUG_RULES": {
+    "message": "Schakel foutopsporing in regels in"
+  },
+  "HZ_SMOOTHSCROLL": {
+    "message": "Ondersteuning voor soepel scrollen (trackpad/smooth scroll-muis)"
   }
 }

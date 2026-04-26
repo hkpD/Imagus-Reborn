@@ -171,7 +171,7 @@
     "message": "ładuj obrazki ręcznie"
   },
   "HZ_SC_FULLZOOM": {
-    "message": "aktywuj tryb pełnego powiększenia"
+    "message": "aktywuj tryb pełnego powiększenia (<b>+ Shift</b> dla drugiego trybu ruchu)"
   },
   "HZ_SC_FULLSPACE": {
     "message": "przełącza tryb wyświetlania na pełny obszar strony"
@@ -180,7 +180,7 @@
     "message": "włącza zawijanie podpisu (lub ukrywa go przy wciśniętym klawiszu <b>Shift</b>)"
   },
   "HZ_SC_OPEN": {
-    "message": "otwiera obrazek na nowej karcie (wciśnij <b>Shift</b> by otworzyć na nowej karcie w tle)"
+    "message": "otwiera obrazek na nowej karcie (<b>+ Shift</b> dla karty tła, <b>+ Ctrl</b> dla wyskakującego okienka)"
   },
   "HZ_SC_RESET": {
     "message": "ukrywa okienko z podglądem i przerywa pobieranie jego zawartości"
@@ -514,5 +514,17 @@
   },
   "SC_HIRES": {
     "message": "przełącz obraz w wysokiej rozdzielczości"
+  },
+  "TOOLBAR_IMG": {
+    "message": "po najechaniu na obraz"
+  },
+  "TOOLBAR_CORNER": {
+    "message": "po najechaniu prawym górnym rogiem"
+  },
+  "DEBUG_RULES": {
+    "message": "Włącz debugowanie reguł"
+  },
+  "HZ_SMOOTHSCROLL": {
+    "message": "Obsługa płynnego przewijania (gładzik / mysz z płynnym przewijaniem)"
   }
 }
