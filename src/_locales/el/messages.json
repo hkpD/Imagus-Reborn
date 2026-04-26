@@ -224,9 +224,6 @@
   "TLS_SENDIMGTO": {
     "message": "Αποστολή εικόνας προς..."
   },
-  "TLS_SENDTOMSC": {
-    "message": "Ctrl + Alt [+ Shift] + Δεξί κλικ σε (κανονική) εικόνα"
-  },
   "SIV_BUTT_NEW": {
     "message": "Προσθήκη κανόνα"
   },

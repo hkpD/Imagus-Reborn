@@ -227,9 +227,6 @@
   "TLS_SENDIMGTO": {
     "message": "Kép címének küldése..."
   },
-  "TLS_SENDTOMSC": {
-    "message": "Ctrl + Alt [+ Shift] + jobb kattintás normál képre"
-  },
   "SIV_BUTT_NEW": {
     "message": "Új szabály hozzáadása"
   },

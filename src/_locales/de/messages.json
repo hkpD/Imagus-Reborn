@@ -227,9 +227,6 @@
   "TLS_SENDIMGTO": {
     "message": "Bild senden an..."
   },
-  "TLS_SENDTOMSC": {
-    "message": "Strg + Alt [+ Umschalttaste] + Rechtsklick auf (normales) Bild"
-  },
   "SIV_BUTT_NEW": {
     "message": "Neue Regel"
   },

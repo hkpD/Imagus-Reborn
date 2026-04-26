@@ -242,9 +242,6 @@
   "TLS_SENDIMGTO": {
     "message": "Send image to..."
   },
-  "TLS_SENDTOMSC": {
-    "message": "Ctrl + Alt [+ Shift] + Right click on (normal) image"
-  },
   "SIV_BUTT_NEW": {
     "message": "New rule"
   },

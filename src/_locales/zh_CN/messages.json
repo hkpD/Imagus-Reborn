@@ -224,9 +224,6 @@
   "TLS_SENDIMGTO": {
     "message": "发送图片到..."
   },
-  "TLS_SENDTOMSC": {
-    "message": "Ctrl + Alt [+ Shift] + 右键点击（普通）图片"
-  },
   "SIV_BUTT_NEW": {
     "message": "新建规则"
   },

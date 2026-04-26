@@ -224,9 +224,6 @@
   "TLS_SENDIMGTO": {
     "message": "Надіслати зображення в..."
   },
-  "TLS_SENDTOMSC": {
-    "message": "Ctrl + Alt [+ Shift] + Права кнопка миші на (вихідному) зображенні"
-  },
   "SIV_BUTT_NEW": {
     "message": "Новий фільтр"
   },

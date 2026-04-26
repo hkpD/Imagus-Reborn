@@ -227,9 +227,6 @@
   "TLS_SENDIMGTO": {
     "message": "Wyślij obrazek do..."
   },
-  "TLS_SENDTOMSC": {
-    "message": "Ctrl + Alt [+ Shift] + prawy przycisk myszy na obrazku"
-  },
   "SIV_BUTT_NEW": {
     "message": "Nowa reguła"
   },
