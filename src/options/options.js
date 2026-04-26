@@ -450,6 +450,13 @@ function updateSavedValues() {
     }
 }
 
+async function deinitTabs() {
+    const tabs = await chrome.tabs.query({ url: "<all_urls>" });
+    for (const tab of tabs) {
+        chrome.tabs.sendMessage(tab.id, { cmd: "reinit" });
+    }
+}
+
 window.onhashchange = function () {
     var section,
         args = [],
@@ -645,11 +652,12 @@ window.addEventListener(
         );
         $("save_button").addEventListener(
             "click",
-            function (e) {
+            async function (e) {
                 e.preventDefault();
-                save();
+                await save();
                 color_trans(this, "green");
                 e.target.classList.remove("alert");
+                deinitTabs();
             },
             false
         );

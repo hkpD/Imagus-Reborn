@@ -877,6 +877,15 @@
             PVI.mutObserver?.observe(node, PVI.mutObserverConf);
         },
 
+        resetAllNodes: function () {
+            const nodes = doc.querySelectorAll('a, img[src], :not(img)[style*="background-image"], a, b, i, u, strong, em, span, div');
+            nodes.forEach(function (el) {
+                if (el.IMGS_c !== undefined) {
+                    PVI.resetNode(el);
+                }
+            });
+        },
+
         resetNode: function (node, keepAlbum) {
             delete node.IMGS_c;
             delete node.IMGS_c_resolved;
@@ -3287,12 +3296,33 @@
             } else if (d.cmd === "toggle" || d.cmd === "preload") {
                 win.top.postMessage({ vdfDpshPtdhhd: d.cmd }, "*");
 
+            } else if (d.cmd === "reinit") {
+                PVI.reset();
+                PVI.resetAllNodes();
+                PVI.resetExtension();
+                PVI.stack = {};
+                Port.send({ cmd: "hello" })
+
             } else if (d.cmd === "hello") {
                 PVI.init(null, true);
                 PVI.init(d);
 
             } else if (d.cmd === "download") {
                 download(d);
+            }
+        },
+
+        resetExtension: function () {
+            if (!PVI.EXTENSION) return;
+            PVI.EXTENSION = undefined;
+            for (const k of Object.keys(PVI)) {
+                if (k.endsWith("_original") && typeof PVI[k] === "function") {
+                    const originalKey = k.slice(0, -9);
+                    if (typeof PVI[originalKey] === "function") {
+                        PVI[originalKey] = PVI[k];
+                        delete PVI[k];
+                    }
+                }
             }
         },
 
@@ -3303,7 +3333,8 @@
                 if (PVI.DIV) {
                     doc.documentElement.removeChild(PVI.DIV);
                     doc.documentElement.removeChild(PVI.LDR);
-                    PVI.BOX = PVI.DIV = PVI.CNT = PVI.VID = PVI.IMG = PVI.CAP = PVI.TRG = PVI.interlacer = null;
+                    doc.documentElement.removeChild(PVI.HVR);
+                    PVI.HVR = PVI.BOX = PVI.DIV = PVI.CNT = PVI.VID = PVI.IMG = PVI.CAP = PVI.TRG = PVI.interlacer = null;
                 }
                 PVI.lastScrollTRG = null;
             } else {
