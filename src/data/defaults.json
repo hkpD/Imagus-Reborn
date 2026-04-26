@@ -79,7 +79,7 @@
 		"hz_fullZm": "Z",
 		"hz_fullSpace": "F",
 		"hz_caption": "C",
-		"hz_open": "O",
+		"openTab": "O",
 		"hz_history": "H"
 	},
 	"grants": [],

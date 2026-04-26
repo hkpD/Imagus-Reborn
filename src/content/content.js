@@ -45,19 +45,34 @@
     }
 
     var openTab = function (e) {
-        let src = PVI.EXTENSION?.VIDEOJS?.player?.src() || PVI.CNT.src;
+        let src = PVI.EXTENSION?.VIDEOJS?.player?.src() || PVI.EXTENSION?.IFRAME?.src || PVI.CNT.src;
         if (PVI.galleryState === 2 && PVI.TRG?.href) {
             src = PVI.TRG.href
         }
         if (src) {
             src = src.replace(rgxHash, "");
-            if (e.shiftKey || e.button === 1) {
+            const how =
+                e.shiftKey && e.button === undefined || e.ctrlKey && e.button === 0 || e.button === 1 ? "bg" :
+                e.shiftKey && e.button === 0 || e.ctrlKey ? "popup" :
+                "tab";
+
+            if (how === "bg") {
                 Port.send({ cmd: "open", url: src, nf: true });
+
+            } else if (how === "popup") {
+                const w = PVI.EXTENSION?.VIDEOJS?.player?.videoWidth() || PVI.CNT.videoWidth || PVI.CNT.naturalWidth || PVI.CNT.clientWidth || 0;
+                const h = PVI.EXTENSION?.VIDEOJS?.player?.videoHeight() || PVI.CNT.videoHeight || PVI.CNT.naturalHeight || PVI.CNT.clientHeight || 0;
+                window.open(src, "", [
+                    "popup=true",
+                    w ? `width=${w},left=${(window.screen.width - w) / 2}` : "",
+                    h ? `height=${h},top=${(window.screen.height - h) / 2}` : ""
+                ].filter(Boolean).join(","));
+
             } else {
                 window.open(src);
-                window.focus();
             }
-            if (e && !e.shiftKey && !PVI.fullZm) PVI.reset();
+
+            if (how !== "bg") PVI.reset();
         }
     }
 
@@ -686,8 +701,9 @@
                             { tag: "span", text: "≡" },
                             { tag: "span", text: "⨉" },
                         ]},
-                        { tag: "i", text: "O", attrs: { "data-action": "open", title: "Open in new tab" } },
                         { tag: "i", text: "S", attrs: { "data-action": "download", title: "Save" } },
+                        { tag: "i", text: "O", attrs: { "data-action": "open",
+                            title: "Open in new tab\n+Ctrl/Middle click: background\n+Shift: popup window" } },
                         { tag: "i", text: "G", attrs: { "data-action": "gallery", title: "Gallery" } },
                         { tag: "i", text: "#", attrs: { "data-action": "goto", title: "Goto / Search" } },
                         { tag: "i", text: "↻", attrs: { "data-action": "rotate", title: "Rotate right" } },
@@ -2191,17 +2207,9 @@
                                 doc.execCommand("copy");
                                 PVI.timers.copy = Date.now();
                             }
-                        } else if (key === cfg.keys.hz_open) {
-                            key = {};
-                            ((PVI.TRG.IMGS_caption || "").match(/\b((?:www\.[\w-]+(\.\S{2,7}){1,4}|https?:\/\/)\S+)/g) || []).forEach(function (el) {
-                                key[el[0] === "w" ? "http://" + el : el] = 1;
-                            });
-                            key = Object.keys(key);
-                            if (key.length) {
-                                Port.send({ cmd: "open", url: key, nf: e.shiftKey });
-                                if (!e.shiftKey && !PVI.fullZm) PVI.reset();
-                                pv = true;
-                            }
+                        } else if (key === cfg.keys.openTab) {
+                            openTab(e);
+                            pv = true;
                         } else if (key === "Left" || key === "Right") {
                             key = key === "Left" ? -5 : 5;
                             PVI.VID.currentTime += key * (e.shiftKey ? 3 : 1);
@@ -2331,7 +2339,7 @@
                 else if (key === cfg.keys.hz_history) PVI.history(e.shiftKey);
                 else if (key === cfg.keys.send) {
                     if (PVI.CNT === PVI.IMG) imageSendTo({ url: PVI.CNT.src, nf: e.shiftKey });
-                } else if (key === cfg.keys.hz_open) {
+                } else if (key === cfg.keys.openTab) {
                     openTab(e);
                 } else if (key === cfg.keys.prefs) {
                     Port.send({ cmd: "options" });

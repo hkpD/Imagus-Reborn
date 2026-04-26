@@ -370,6 +370,9 @@ var save = async function () {
             } else prefs[pref[0]][pref[1]] = fld.value;
         }
     }
+    // to avoid conflicts with EXTENSION
+    prefs.keys.hz_open = "";
+
     await Port.send({ cmd: "savePrefs", prefs: prefs });
     await readCfg();
     updateSavedValues();
