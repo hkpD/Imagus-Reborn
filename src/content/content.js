@@ -1607,8 +1607,8 @@
                     left += rot;
                     top -= rot;
                 }
-                PVI.DIV.style.width = w + "px";
-                PVI.DIV.style.height = h + "px";
+                PVI.DIV.style.width = Math.floor(w) + "px";
+                PVI.DIV.style.height = Math.floor(h) + "px";
                 PVI.updateCaption();
             } else {
                 if (cfg.hz.placement === 1) {
@@ -2759,7 +2759,7 @@
                     break;
             }
             if (!xy_img) xy_img = [true, null];
-            xy_img.push(s[rot ? 1 : 0], s[rot ? 0 : 1]);
+            xy_img.push(Math.floor(s[rot ? 1 : 0]), Math.floor(s[rot ? 0 : 1]));
             PVI.m_move(xy_img);
         },
 
@@ -2992,6 +2992,8 @@
                         }
                         w = e[2] || parseInt(PVI.DIV.style.width, 10);
                         h = parseInt(w * (h || PVI.CNT.naturalHeight / PVI.CNT.naturalWidth), 10);
+                        w += PVI.DBOX["hpb"];
+                        h += PVI.DBOX["wpb"];
                     } else {
                         w = PVI.LDR.wh[0];
                         h = PVI.LDR.wh[1];
@@ -3002,8 +3004,8 @@
                         h = rot;
                         rot = (w - h) / 2;
                     } else rot = 0;
-                    x = (w - PVI.DBOX["wpb"] > winW ? -((PVI.x * (w - winW + 80)) / winW) + 40 : (winW - w) / 2) + rot - PVI.DBOX["wpb"];
-                    y = (h - PVI.DBOX["hpb"] > winH ? -((PVI.y * (h - winH + 80)) / winH) + 40 : (winH - h) / 2) - rot;
+                    x = (w - PVI.DBOX["wpb"] > winW ? -((PVI.x * (w - winW + 80)) / winW) + 40 : (winW - w) / 2) + rot - PVI.DBOX["ml"];
+                    y = (h - PVI.DBOX["hpb"] > winH ? -((PVI.y * (h - winH + 80)) / winH) + 40 : (winH - h) / 2) - rot - PVI.DBOX["mt"] + (PVI.getCapHeight() / 2);
                 }
                 if (e[2] !== undefined) {
                     PVI.BOX.style.width = e[2] + "px";
@@ -3166,7 +3168,7 @@
                 }
                 if (cmd === "isFrame") {
                     PVI.iFrame = d.parent === "BODY";
-                    if (!PVI.iFrame) win.addEventListener("resize", PVI.onWinResize, true);
+                    if (!PVI.iFrame) win.addEventListener("resize", PVI.onWinResize);
                 } else PVI[cmd](d);
             } else if (cmd === "from_frame") {
                 if (PVI.iFrame) {
@@ -3395,7 +3397,7 @@
             win[e]("mousedown", onMouseDown, true);
             win[e]("mouseup", releaseFreeze, true);
             win[e]("dragend", releaseFreeze, true);
-            if (!PVI.iFrame) win[e]("resize", PVI.onWinResize, true);
+            if (!PVI.iFrame) win[e]("resize", PVI.onWinResize);
             PVI.initOnMouseMoveEnd(!!PVI.capturedMoveEvent);
             if (!win.MutationObserver) {
                 PVI.attrObserver = null;
