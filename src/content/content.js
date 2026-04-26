@@ -298,9 +298,17 @@
             }
         }
 
+        if (!src) return;
+
         if (msg?.alterDownload) {
             try {
                 let resp = await fetch(src);
+                if (!resp.ok) {
+                    resp = await fetch(src, { credentials: "include" });
+                }
+                if (!resp.ok) {
+                    throw new Error(`${resp.status} ${resp.statusText}`);
+                }
                 resp = await resp.blob();
                 msg.url = URL.createObjectURL(resp);
                 msg.urlName = src.substr(src.lastIndexOf('/') + 1).split('#')[0].split('?')[0];
