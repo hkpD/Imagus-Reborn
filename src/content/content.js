@@ -3,6 +3,7 @@
     if (!doc || doc instanceof win.HTMLDocument === false) return;
     var imgDoc = doc.images && doc.images.length === 1 && doc.images[0];
     if (imgDoc && imgDoc.parentNode === doc.body && imgDoc.src === win.location.href) return;
+    if (doc.body?.children?.length === 1 && doc.body.children[0].currentSrc === win.location.href) return;
 
     // Smooth scroll support (trackpad / smooth-scroll mouse)
     let wheelRAF = null;
