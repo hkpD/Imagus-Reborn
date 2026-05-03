@@ -2861,7 +2861,7 @@
                 if (cfg.hz.markOnHovered && (isFrozen || cfg.hz.delay >= 25))
                     if (cfg.hz.markOnHovered === "cr" || cfg.hz.markOnHovered === "both") {
                         PVI.lastTRGStyle.cursor = trg.style.cursor;
-                        trg.style.cursor = "zoom-in";
+                        trg.style.cursor = "help";
                     }
                     if (cfg.hz.markOnHovered === "styled" || cfg.hz.markOnHovered === "both") {
                         PVI.showHVR(true);
@@ -2956,7 +2956,7 @@
                 if (PVI.shouldScroll(e) && (PVI.TRG.IMGS_album || PVI.isVideo() && (!cfg.hz.scrollVideoWithCtrl || e?.ctrlKey))) {
                     PVI.setCursor();
                 } else if (e?.target) {
-                    PVI.setCursor("zoom-in");
+                    PVI.setCursor("help");
                 }
                 // that's keydown event
                 if (e?.target && !e.clientX) {
